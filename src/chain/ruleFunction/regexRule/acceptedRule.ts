@@ -1,9 +1,9 @@
 import inRule from "./inRule";
-
-export default function acceptedRule (root: any, data: any, params: any) {
-  return inRule(data, {
-    in: [1, 'on', 'yes', true]
-  })
+// [1, 'on', 'yes', true]
+export default function acceptedRule (data: any, params: any) {
+  return (typeof data == "number" && data == 1) ||
+    (typeof data == "string" && (data == 'on' || data == 'yes')) ||
+    (typeof data == "boolean" && data);
 }
 
 acceptedRule.getErrorMessage = function (attribute_name: string, params: any) {
