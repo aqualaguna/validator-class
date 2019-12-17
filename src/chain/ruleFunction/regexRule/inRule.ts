@@ -1,11 +1,18 @@
 export default function inRule (data: any, params: any) {
-  return params.value.includes(data);
+  let value = params.value;
+  if (!Array.isArray(value)) {
+    value = [value];
+  }
+  if (typeof data == 'string' || typeof data == 'number' || typeof data == 'boolean') {
+    return params.value.includes(data.toString());
+  }
+  return false;
 }
 
 inRule.getErrorMessage = function (attribute_name: string, params: any) {
-  if (Array.isArray(params.value)) { 
-    return `${attribute_name} must one of [${params.value.join(', ')}]`
-  } else {
-    return `${attribute_name} must one of [${params.value}]`
+  let value = params.value;
+  if (!Array.isArray(value)) {
+    value = [value];
   }
+  return `${attribute_name} must one of [${value.join(', ')}]`;
 }
