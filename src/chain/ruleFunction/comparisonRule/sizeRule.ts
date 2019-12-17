@@ -2,7 +2,7 @@ export default function sizeRule (data: any, params: any) {
   if (typeof data != "string") {
     return false;
   } else {
-    return data.length <= params.value;
+    return data.length == params.value;
   }
 }
 

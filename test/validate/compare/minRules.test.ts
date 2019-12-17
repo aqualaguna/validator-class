@@ -25,7 +25,7 @@ describe('minRules', () => {
       val1: 'min:1', // true
       val2: 'min:1', // true
       val3: 'min:1', // true
-      val4: 'min:1', //false
+      val4: 'min:1', // true
       val5: 'min:1', // false
       val6: 'min:1', // false object or array cannot be compared
       val7: 'min:1', // false object or array cannot be compared
@@ -38,16 +38,16 @@ describe('minRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(7);
+    expect(Object.keys(err).length).toBe(6);
     expect(err).toEqual(expect.objectContaining({
-      val4: ['val4 minimum value is 1'],
       val5: ['val5 minimum value is 1'],
       val6: ['val6 minimum value is 1'],
       val7: ['val7 minimum value is 1'],
       val8: ['val8 minimum value is 1'],
       val12: ['val12 minimum value is 1.5'],
       val14: ['val14 minimum value is 2', 'val14 minimum value is 2.5']
-    }));
+    }
+    ));
   });
 
   it('nested min', async () => {
@@ -55,20 +55,25 @@ describe('minRules', () => {
       temp: {
         val1: 10,
         val2: 1.4,
+        val3: 'test',
+        val4: 'tes'
       }
     };
     let rules = {
       temp: {
         val1: 'min:10|yo', // unexpected rule
-        val2: 'min:1.5' // invalid rule
+        val2: 'min:1.5', // invalid rule
+        val3: 'min:4', // true
+        val4: 'min:4' // false
       }
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
+    expect(Object.keys(err).length).toBe(3);
     expect(err).toEqual(expect.objectContaining({
       'temp.val1': ["'yo' does not exists in rule definition."],
-      'temp.val2': ['temp.val2 minimum value is 1.5']
-    }))
+      'temp.val2': ['temp.val2 minimum value is 1.5'],
+      'temp.val4': ['temp.val4 minimum value is 4']
+    }));
   });
 });

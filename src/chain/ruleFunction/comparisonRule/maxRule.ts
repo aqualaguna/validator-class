@@ -1,9 +1,8 @@
 import lteRule from "./lteRule";
-import sizeRule from "./sizeRule";
 
 export default function maxRule (data: any, params: any) {
   if (typeof data == 'string') {
-    return sizeRule(data, params);
+    return data.length <= params.value;
   } else {
     return lteRule(data, params);
   }
