@@ -1,6 +1,10 @@
 export default function alphaDashRule (data: any, params: any) {
-  let regex = /^[a-zA-Z0-9-_]*$/;
-  return data.match(regex) ? true : false;
+  if(typeof data == "string") {
+    let regex = /^[a-zA-Z0-9-_]*$/;
+    return data.match(regex) ? true : false;
+  } else {
+    return false;
+  }
 }
 
 alphaDashRule.getErrorMessage = function (attribute_name: string, params: any) {
