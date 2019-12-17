@@ -1,6 +1,15 @@
+import setByPath from "../../helper/setByPath";
+
 export default function dateRule (data: any, params: any): boolean {
+  if ((typeof data == 'number' && data < 0) || typeof data == "boolean" || data == null) {
+    return false;
+  }
   let date = new Date(data);
-  return isNaN(date.getTime());
+  let result = !isNaN(date.getTime());
+  if (result && !(data instanceof Date)) {
+    setByPath(params.root, params.path, date);
+  }
+  return result;
 }
 
 dateRule.getErrorMessage = function (attribute_name: string, params: any) {

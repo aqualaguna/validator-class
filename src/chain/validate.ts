@@ -22,13 +22,14 @@ export default class Validate extends Rule {
             // there is a definition
             let path = [...ancestor];
             path.push(key);
-
             let data = getByPath(tis.data, path);
+
             // data get ;)
             // lets validate
             let params = {
-              value: r[1] ? (r[1].match(',') ? r[1].split(',') : r[1]) : undefined,
+              value: (r[1]) ? (r[1].match(',') ? r[1].split(',') : r[1]) : undefined,
               ancestor,
+              path,
               root: tis.data
             };
             let status = tis.rulesFunction[r[0]](data, params);

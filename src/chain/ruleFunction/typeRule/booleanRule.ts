@@ -1,12 +1,36 @@
+import setByPath from "../../helper/setByPath";
+
 export default function booleanRule (data: any, params: any): boolean {
+  let result = false;
+  let setData;
   if (typeof data == 'string') {
-    let temp = Number(data);
-    return isNaN(temp) ? Boolean(temp) : false;
+    if (data == 'true' || data == 'false') {
+      result = true;
+      setData = data == 'true' ? true : false;
+    } else {
+      let temp = Number(data);
+      result = !isNaN(temp);
+      setData = Boolean(temp);
+    }
+
   } else if (typeof data == 'number') {
-    return isNaN(data) ? Boolean(data) : false;
+    result = !isNaN(data);
+    setData = Boolean(data);
+  } else if (typeof data == 'object' || typeof data == 'undefined') {
+    result = false;
+    setData = false;
+  } else if (typeof data == 'boolean') {
+    // if boolean
+    result = true;
+    setData = Boolean(data);
   } else {
-    return Boolean(data);
+    result = false;
+    setData = false;
   }
+  if (result && typeof data != "boolean") {
+    setByPath(params.root, params.path, setData);
+  }
+  return result;
 }
 
 booleanRule.getErrorMessage = function (attribute_name: string, params: any) {
