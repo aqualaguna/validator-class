@@ -52,7 +52,6 @@ describe('emailRules', () => {
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-
     }))
   });
 });

@@ -3,5 +3,9 @@ export default function inRule (data: any, params: any) {
 }
 
 inRule.getErrorMessage = function (attribute_name: string, params: any) {
-  return `${attribute_name} must one of [${params.value.join(', ')}]`
+  if (Array.isArray(params.value)) { 
+    return `${attribute_name} must one of [${params.value.join(', ')}]`
+  } else {
+    return `${attribute_name} must one of [${params.value}]`
+  }
 }
