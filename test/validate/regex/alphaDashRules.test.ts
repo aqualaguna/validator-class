@@ -24,37 +24,36 @@ describe('alphaDashRules', () => {
       val16: [1, 2, 3] // not empty array
     };
     let rules = {
-        val1: 'alpha_dash', // true
-        val2: 'alpha_dash', // true
-        val3: 'alpha_dash', // true
-        val4: 'alpha_dash', // true
-        val5: 'alpha_dash', // false
-        val6: 'alpha_dash', // false
-        val7: 'alpha_dash', // true
-        val8: 'alpha_dash', // true
-        val9: 'alpha_dash', // false
-        val10 : 'alpha_dash', // false
-        val11 : 'alpha_dash', // false
-        val12 : 'alpha_dash', // true
-        val13 : 'alpha_dash', // false
-        val14 : 'alpha_dash', // false
-        val15 : 'alpha_dash', // false
-        val16 : 'alpha_dash', // false
+      val1: 'alpha_dash', // true
+      val2: 'alpha_dash', // true
+      val3: 'alpha_dash', // true
+      val4: 'alpha_dash', // true
+      val5: 'alpha_dash', // false
+      val6: 'alpha_dash', // false
+      val7: 'alpha_dash', // true
+      val8: 'alpha_dash', // true
+      val9: 'alpha_dash', // false
+      val10: 'alpha_dash', // false
+      val11: 'alpha_dash', // false
+      val12: 'alpha_dash', // true
+      val13: 'alpha_dash', // false
+      val14: 'alpha_dash', // false
+      val15: 'alpha_dash', // false
+      val16: 'alpha_dash', // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    console.log(err);
     expect(Object.keys(err).length).toBe(9);
     expect(err).toEqual(expect.objectContaining({
-        val5: ['val5 must match alphadash |a-z,A-Z,0-9,-,_| .'],
-        val6: ['val6 must match alphadash |a-z,A-Z,0-9,-,_| .'],
-        val9: ['val9 must match alphadash |a-z,A-Z,0-9,-,_| .'],
-        val10: ['val10 must match alphadash |a-z,A-Z,0-9,-,_| .'],
-        val11: ['val11 must match alphadash |a-z,A-Z,0-9,-,_| .'],
-        val13: ['val13 must match alphadash |a-z,A-Z,0-9,-,_| .'],
-        val14: ['val14 must match alphadash |a-z,A-Z,0-9,-,_| .'],
-        val15: ['val15 must match alphadash |a-z,A-Z,0-9,-,_| .'],
-        val16: ['val16 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val5: ['val5 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val6: ['val6 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val9: ['val9 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val10: ['val10 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val11: ['val11 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val13: ['val13 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val14: ['val14 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val15: ['val15 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      val16: ['val16 must match alphadash |a-z,A-Z,0-9,-,_| .'],
     }))
   });
 
@@ -75,7 +74,7 @@ describe('alphaDashRules', () => {
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-        val2: ['val2 must match alphadash |a-z,A-Z,0-9,-,_| .'],
+      "temp.val2": ['temp.val2 must match alphadash |a-z,A-Z,0-9,-,_| .'],
     }))
   });
 });

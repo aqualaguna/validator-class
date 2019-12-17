@@ -1,7 +1,7 @@
 {
   "name": "validator-class",
   "version": "1.0.0",
-  "description": "validator for my model",
+  "description": "validator for json structure",
   "main": "lib/index",
   "types": "lib/index",
   "scripts": {
@@ -16,15 +16,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aqualaguna/mongo-model.git"
+    "url": "git+https://github.com/aqualaguna/validator-class"
   },
   "keywords": [
-    "orm",
-    "mongodb",
-    "nodejs"
+    "nodejs",
+    "js",
+    "validator",
+    "library",
+    "jest"
   ],
-  "author": "ricardo",
-  "license": "ISC",
+  "author": "ricardo <ricardosentinel7@gmail.com>",
+  "contributors": [
+    "Ernesto <animusisis@yahoo.com>"
+  ],
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^24.0.15",

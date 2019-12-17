@@ -24,26 +24,25 @@ describe('alphaRules', () => {
       val16: [1, 2, 3] // not empty array
     };
     let rules = {
-        val1: 'alpha', // true
-        val2: 'alpha', // false
-        val3: 'alpha', // false
-        val4: 'alpha', // false
-        val5: 'alpha', // false
-        val6: 'alpha', // false
-        val7: 'alpha', // false
-        val8: 'alpha', // false
-        val9: 'alpha', // false
-        val10 : 'alpha', // false
-        val11 : 'alpha', // false
-        val12 : 'alpha', // false
-        val13 : 'alpha', // false
-        val14 : 'alpha', // false
-        val15 : 'alpha', // false
-        val16 : 'alpha', // false
+      val1: 'alpha', // true
+      val2: 'alpha', // false
+      val3: 'alpha', // false
+      val4: 'alpha', // false
+      val5: 'alpha', // false
+      val6: 'alpha', // false
+      val7: 'alpha', // false
+      val8: 'alpha', // false
+      val9: 'alpha', // false
+      val10: 'alpha', // false
+      val11: 'alpha', // false
+      val12: 'alpha', // false
+      val13: 'alpha', // false
+      val14: 'alpha', // false
+      val15: 'alpha', // false
+      val16: 'alpha', // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    console.log(err);
     expect(Object.keys(err).length).toBe(15);
     expect(err).toEqual(expect.objectContaining({
       val2: ['val2 must match alpha |a-z,A-Z|.'],
@@ -81,7 +80,7 @@ describe('alphaRules', () => {
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      val2: ['val2 must match alpha |a-z,A-Z|.'],
+      "temp.val2": ['temp.val2 must match alpha |a-z,A-Z|.'],
     }))
   });
 });

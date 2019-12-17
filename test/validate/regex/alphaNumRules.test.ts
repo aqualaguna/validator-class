@@ -24,41 +24,40 @@ describe('alphaNumRules', () => {
       val16: [1, 2, 3] // not empty array
     };
     let rules = {
-        val1: 'alpha_num', // true
-        val2: 'alpha_num', // true
-        val3: 'alpha_num', // false
-        val4: 'alpha_num', // false
-        val5: 'alpha_num', // false
-        val6: 'alpha_num', // false
-        val7: 'alpha_num', // false
-        val8: 'alpha_num', // false
-        val9: 'alpha_num', // false
-        val10 : 'alpha_num', // false
-        val11 : 'alpha_num', // false
-        val12 : 'alpha_num', // true
-        val13 : 'alpha_num', // false
-        val14 : 'alpha_num', // false
-        val15 : 'alpha_num', // false
-        val16 : 'alpha_num', // false
+      val1: 'alpha_num', // true
+      val2: 'alpha_num', // true
+      val3: 'alpha_num', // false
+      val4: 'alpha_num', // false
+      val5: 'alpha_num', // false
+      val6: 'alpha_num', // false
+      val7: 'alpha_num', // false
+      val8: 'alpha_num', // false
+      val9: 'alpha_num', // false
+      val10: 'alpha_num', // false
+      val11: 'alpha_num', // false
+      val12: 'alpha_num', // true
+      val13: 'alpha_num', // false
+      val14: 'alpha_num', // false
+      val15: 'alpha_num', // false
+      val16: 'alpha_num', // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    console.log(err);
     expect(Object.keys(err).length).toBe(13);
     expect(err).toEqual(expect.objectContaining({
-        val3: ['val3 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val4: ['val4 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val5: ['val5 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val6: ['val6 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val7: ['val7 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val8: ['val8 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val9: ['val9 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val10: ['val10 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val11: ['val11 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val13: ['val13 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val14: ['val14 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val15: ['val15 must match alpha numeric |a-z,A-Z,0-9|.'],
-        val16: ['val16 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val3: ['val3 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val4: ['val4 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val5: ['val5 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val6: ['val6 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val7: ['val7 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val8: ['val8 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val9: ['val9 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val10: ['val10 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val11: ['val11 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val13: ['val13 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val14: ['val14 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val15: ['val15 must match alpha numeric |a-z,A-Z,0-9|.'],
+      val16: ['val16 must match alpha numeric |a-z,A-Z,0-9|.'],
     }))
   });
 
@@ -79,7 +78,7 @@ describe('alphaNumRules', () => {
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-        val2: ['val3 must match alpha numeric |a-z,A-Z,0-9|.'],
+      "temp.val2": ['temp.val2 must match alpha numeric |a-z,A-Z,0-9|.'],
     }))
   });
 });

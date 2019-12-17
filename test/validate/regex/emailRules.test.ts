@@ -57,7 +57,6 @@ describe('emailRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    console.log(err);
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
       'temp.val2': ['temp.val2 must match email format.']
