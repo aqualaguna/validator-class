@@ -6,26 +6,26 @@ describe('emailRules', () => {
 
   it('should success email rules', async () => {
     let data = {
-      val1: "test@yahoo.com",
-      val2: "test.yahoo.com",
-      val3: "test98;yahoo;com",
-      val4: "test98@yahoo@com",
-      val5: "t3st/yahoo/com",
+      val1: 'test@yahoo.com',
+      val2: 'test.yahoo.com',
+      val3: 'test98;yahoo;com',
+      val4: 'test98@yahoo@com',
+      val5: 't3st/yahoo/com',
       val6: true,
       val7: 98,
       val8: [],
       val9: {}
     };
     let rules = {
-      val1: "email", // true
-      val2: "email", // false
-      val3: "email", // false
-      val4: "email", // false
-      val5: "email", // false
-      val6: "email", // false
-      val7: "email", // false
-      val8: "email", // false
-      val9: "email" // false
+      val1: 'email', // true
+      val2: 'email', // false
+      val3: 'email', // false
+      val4: 'email', // false
+      val5: 'email', // false
+      val6: 'email', // false
+      val7: 'email', // false
+      val8: 'email', // false
+      val9: 'email' // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
@@ -45,8 +45,8 @@ describe('emailRules', () => {
   it('nested email', async () => {
     let data = {
       temp: {
-        val1: "test@yahoo.com",
-        val2: "test@yahoo@com",
+        val1: 'test@yahoo.com',
+        val2: 'test@yahoo@com',
       }
     };
     let rules = {

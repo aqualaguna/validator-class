@@ -20,18 +20,18 @@ describe('inRules', () => {
       val12: 10,
     };
     let rules = {
-      val1: "in:1", // false
-      val2: "in:1", // false
-      val3: "in:1", // false
-      val4: "in:10,11", // true
-      val5: "in:10,11", // true
-      val6: "in:1,test", // true
-      val7: "in:1,3", // false
-      val8: "in:male,female", // true
-      val9: "in:male,female", // false
-      val10: "in:false,true", //true
-      val11: "in:false", // false
-      val12: "in:10" //true
+      val1: 'in:1', // false
+      val2: 'in:1', // false
+      val3: 'in:1', // false
+      val4: 'in:10,11', // true
+      val5: 'in:10,11', // true
+      val6: 'in:1,test', // true
+      val7: 'in:1,3', // false
+      val8: 'in:male,female', // true
+      val9: 'in:male,female', // false
+      val10: 'in:false,true', //true
+      val11: 'in:false', // false
+      val12: 'in:10' //true
     };
     let t = new Validator(data, rules);
     let err = t.validate();
@@ -58,7 +58,7 @@ describe('inRules', () => {
       temp: {
         val1: 'in:1', // unexpected rule
         val2: 'in:1', // invalid rule
-        val3: "in:male,female", // true
+        val3: 'in:male,female', // true
 
       }
     };
