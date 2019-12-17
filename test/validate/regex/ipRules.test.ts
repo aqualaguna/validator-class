@@ -31,36 +31,50 @@ describe('ipRules', () => {
       val23: [1, 2, 3] // not empty array
     };
     let rules = {
-        val1: "ip", // true
-        val2: "ip", // true
-        val3: "ip", // true
-        val4: "ip", // true
-        val5: "ip", // true
-        val6: "ip", // true
-        val7: "ip", // false
-        val8: "ip", // false
-        val9: "ip", // false
-        val10: "ip", // false
-        val11: "ip", // false
-        val12: "ip", // false
-        val13: "ip", // true
-        val14: "ip", // true
-        val15: "ip", // false
-        val16: "ip", // false
-        val17: "ip", // false
-        val18: "ip", // false
-        val19: "ip", // false
-        val20: "ip", // false
-        val21: "ip", // false
-        val22: "ip", // false
-        val23: "ip", // false
+      val1: "ip", // true
+      val2: "ip", // true
+      val3: "ip", // true
+      val4: "ip", // true
+      val5: "ip", // true
+      val6: "ip", // true
+      val7: "ip", // false
+      val8: "ip", // false
+      val9: "ip", // false
+      val10: "ip", // false
+      val11: "ip", // false
+      val12: "ip", // false
+      val13: "ip", // true
+      val14: "ip", // true
+      val15: "ip", // false
+      val16: "ip", // false
+      val17: "ip", // false
+      val18: "ip", // false
+      val19: "ip", // false
+      val20: "ip", // false
+      val21: "ip", // false
+      val22: "ip", // false
+      val23: "ip", // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
     expect(Object.keys(err).length).toBe(15);
     expect(err).toEqual(expect.objectContaining({
-      
-    }))
+      val7: ['val7 must match ip format.'],
+      val8: ['val8 must match ip format.'],
+      val9: ['val9 must match ip format.'],
+      val10: ['val10 must match ip format.'],
+      val11: ['val11 must match ip format.'],
+      val12: ['val12 must match ip format.'],
+      val15: ['val15 must match ip format.'],
+      val16: ['val16 must match ip format.'],
+      val17: ['val17 must match ip format.'],
+      val18: ['val18 must match ip format.'],
+      val19: ['val19 must match ip format.'],
+      val20: ['val20 must match ip format.'],
+      val21: ['val21 must match ip format.'],
+      val22: ['val22 must match ip format.'],
+      val23: ['val23 must match ip format.']
+    }));
   });
 
   it('nested ip', async () => {
@@ -80,7 +94,7 @@ describe('ipRules', () => {
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-
-    }))
+      'temp.val2': ['temp.val2 must match ip format.']
+    }));
   });
 });
