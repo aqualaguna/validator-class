@@ -87,6 +87,6 @@ validator-class created by Ricardo and Ernesto.
 
 E-Mail:
 - ricardosentinel7@gmail.com
-- animusisis@yahoo.com
+- ernesto1@mhs.stts.edu
 
 

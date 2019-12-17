@@ -5,5 +5,9 @@ export default function notInRule (data: any, params: any) {
 }
 
 notInRule.getErrorMessage = function (attribute_name: string, params: any) {
-  return `${attribute_name} must not one of [${params.value.join(', ')}]`
+  let value = params.value;
+  if (!Array.isArray(value)) {
+    value = [value];
+  }
+  return `${attribute_name} must not one of [${value.join(', ')}]`;
 }

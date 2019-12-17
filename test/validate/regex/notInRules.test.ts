@@ -20,30 +20,29 @@ describe('notInRules', () => {
       val12: 10,
     };
     let rules = {
-      val1: 'in:1', // false
-      val2: 'in:1', // false
-      val3: 'in:1', // false
-      val4: 'in:10,11', // true
-      val5: 'in:10,11', // true
-      val6: 'in:1,test', // true
-      val7: 'in:1,3', // false
-      val8: 'in:male,female', // true
-      val9: 'in:male,female', // false
-      val10: 'in:false,true', //true
-      val11: 'in:false', // false
-      val12: 'in:10' //true
+      val1: 'not_in:1', // false
+      val2: 'not_in:1', // false
+      val3: 'not_in:1', // false
+      val4: 'not_in:10,11', // true
+      val5: 'not_in:10,11', // true
+      val6: 'not_in:1,test', // true
+      val7: 'not_in:1,3', // false
+      val8: 'not_in:male,female', // true
+      val9: 'not_in:male,female', // false
+      val10: 'not_in:false,true', //true
+      val11: 'not_in:false', // false
+      val12: 'not_in:10' //true
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    console.log(err)
     expect(Object.keys(err).length).toBe(6);
     expect(err).toEqual(expect.objectContaining({
-      val1: ['val1 must not one of [1]'],
-      val2: ['val2 must not one of [1]'],
-      val3: ['val3 must not one of [1]'],
-      val7: ['val7 must not one of [1, 3]'],
-      val9: ['val9 must not one of [male, female]'],
-      val11: ['val11 must not one of [false]']
+      val4: ['val4 must not one of [10, 11]'],
+      val5: ['val5 must not one of [10, 11]'],
+      val6: ['val6 must not one of [1, test]'],
+      val8: ['val8 must not one of [male, female]'],
+      val10: ['val10 must not one of [false, true]'],
+      val12: ['val12 must not one of [10]']
     }));
   });
 
@@ -57,18 +56,17 @@ describe('notInRules', () => {
     };
     let rules = {
       temp: {
-        val1: 'in:1', // unexpected rule
-        val2: 'in:1', // invalid rule
-        val3: 'in:male,female', // true
+        val1: 'not_in:1', // unexpected rule
+        val2: 'not_in:1', // invalid rule
+        val3: 'not_in:male,female', // true
 
       }
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
+    expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      'temp.val1': ['temp.val1 must one of [1]'],
-      'temp.val2': ['temp.val2 must one of [1]']
+      'temp.val3': ['temp.val3 must not one of [male, female]']
     }))
   });
 });
