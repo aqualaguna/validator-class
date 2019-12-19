@@ -1,9 +1,11 @@
 export default function getByPath (data: any, path: string[]) {
-  let clone_path = [...path];
-  let temppath = clone_path.pop();
   let temp = data;
-  for (const p of clone_path) {
+  for (const p of path) {
     temp = temp[p];
   }
-  return temppath ? temp[temppath] : undefined;
+  // if (Array.isArray(temp)) {
+  //   return temp.map(t => temppath ? t[temppath] : undefined);
+  // } else {
+  return temp;
+  // }
 }

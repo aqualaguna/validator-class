@@ -2,6 +2,9 @@ export default function requiredRule (data: any, params: any) {
   if (data == undefined || data == null) {
     return false;
   }
+  if (typeof data == 'string' && data.length == 0) {
+    return false;
+  }
   return true;
 }
 

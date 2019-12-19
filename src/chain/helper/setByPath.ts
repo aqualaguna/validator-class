@@ -1,8 +1,8 @@
 export default function setByPath (data: any, path: string[], value: any) {
-  let clone_path = [...path];
-  let temppath = clone_path.pop();
+  let temppath = path[path.length - 1];
   let temp = data;
-  for (const p of clone_path) {
+  for (let i = 0; i < path.length - 1; i++) {
+    const p = path[i];
     if (typeof temp[p] == 'undefined') {
       temp[p] = {};
     } else {

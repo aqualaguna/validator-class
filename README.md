@@ -74,8 +74,8 @@ if (Object.keys(err).length > 0) {
 # Task
 
 There some feature that will developed in the future: 
-- [ ] Nested Array
-- [ ] accepting array input
+- [x] Nested Array
+- [x] accepting array input
 - [ ] Custom Error Message
 - [ ] i18n language
 

@@ -6,16 +6,21 @@ describe('requiredRules', () => {
 
   it('should success required rules', async () => {
     let data = {
-      val1: 1
+      val1: 1,
+      val3: ''
     };
     let rules = {
       val1: 'required', // true
-      val2: 'required' // false
+      val2: 'required', // false
+      val3: 'required' // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(1);
-    expect(err).toEqual(expect.objectContaining({}))
+    expect(Object.keys(err).length).toBe(2);
+    expect(err).toEqual(expect.objectContaining({
+      val2: ['val2 is required.'],
+      val3: ['val3 is required.']
+    }))
 
   });
 
@@ -33,7 +38,12 @@ describe('requiredRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
-    expect(err).toEqual(expect.objectContaining({}));
+    expect(Object.keys(err).length).toBe(1);
+    expect(err).toEqual(expect.objectContaining({
+      temp: {
+        val1: ["'yo' does not exists in rule definition."],
+        val2: ['val2 is required.']
+      }
+    }));
   });
 });

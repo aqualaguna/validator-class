@@ -57,13 +57,16 @@ describe('arrayRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
+    expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      'temp.val1': [
-        'temp.val1 must type of array.',
-        "'yo' does not exists in rule definition."
-      ],
-      'temp.val4': ['temp.val4 must type of array.']
+      'temp': {
+        val1: [
+          'val1 must type of array.',
+          "'yo' does not exists in rule definition."
+        ],
+        'val4': ['val4 must type of array.']
+      },
+
     }));
   });
 });

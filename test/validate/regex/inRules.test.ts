@@ -64,10 +64,13 @@ describe('inRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
+    expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      'temp.val1': ['temp.val1 must one of [1]'],
-      'temp.val2': ['temp.val2 must one of [1]']
+      'temp': {
+        val1: ['val1 must one of [1]'],
+        'val2': ['val2 must one of [1]']
+      },
+
     }))
   });
 });

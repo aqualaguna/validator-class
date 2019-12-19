@@ -66,13 +66,15 @@ describe('maxRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
+    expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      'temp.val1': [
-        'temp.val1 maximum value is 1',
-        "'yo' does not exists in rule definition."
-      ],
-      'temp.val2': ['temp.val2 maximum value is 1.3']
+      'temp': {
+        val1: [
+          'val1 maximum value is 1',
+          "'yo' does not exists in rule definition."
+        ],
+        'val2': ['val2 maximum value is 1.3']
+      },
     }));
   });
 });

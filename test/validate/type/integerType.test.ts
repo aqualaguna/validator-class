@@ -82,13 +82,16 @@ describe('integerRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
+    expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      'temp.val1': [
-        'temp.val1 must type of integer.',
-        "'yo' does not exists in rule definition."
-      ],
-      'temp.val2': ['temp.val2 must type of integer.']
+      'temp': {
+        val1: [
+          'val1 must type of integer.',
+          "'yo' does not exists in rule definition."
+        ],
+        'val2': ['val2 must type of integer.']
+
+      },
     }));
     expect(typeof data.temp['val3']).toEqual('number');
     expect(typeof data.temp['val4']).toEqual('number');

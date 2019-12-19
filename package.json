@@ -1,6 +1,6 @@
 {
   "name": "validator-class",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "validator for json structure",
   "main": "lib/index",
   "types": "lib/index",
@@ -34,10 +34,13 @@
   "devDependencies": {
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.2",
-    "typescript": "^3.5.3",
+    "benchmark": "^2.1.4",
     "jest": "^24.8.0",
+    "microtime": "^3.0.0",
     "nodemon": "^1.19.1",
     "ts-jest": "^24.0.2",
-    "ts-node": "^8.3.0"
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "validatorjs": "^3.18.1"
   }
 }

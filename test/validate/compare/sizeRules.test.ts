@@ -10,13 +10,16 @@ describe('sizeRules', () => {
       val2: 'sizetemp'
     };
     let rules = {
-      val1: 'size', // false size only valid for string
-      val2: 'size:8' // false
+      val1: 'size:9', // false size only valid for string
+      val2: 'size:8' // true
     };
     let t = new Validator(data, rules);
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
-    expect(err).toEqual(expect.objectContaining({}))
+
+    expect(err).toEqual(expect.objectContaining({
+      val1: ['val1 must have length 9']
+    }));
 
   });
 
@@ -34,7 +37,15 @@ describe('sizeRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
-    expect(err).toEqual(expect.objectContaining({}));
+    expect(Object.keys(err).length).toBe(1);
+    expect(err).toEqual(expect.objectContaining({
+      temp: {
+        val1: [
+          'val1 must have length undefined',
+          "'yo' does not exists in rule definition."
+        ],
+        val2: ['val2 must have length undefined']
+      }
+    }));
   });
 });

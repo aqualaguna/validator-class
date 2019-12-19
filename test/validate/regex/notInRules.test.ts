@@ -66,7 +66,9 @@ describe('notInRules', () => {
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      'temp.val3': ['temp.val3 must not one of [male, female]']
+      'temp': {
+        val3: ['val3 must not one of [male, female]']
+      }
     }))
   });
 });

@@ -68,13 +68,16 @@ describe('gtRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(2);
+    expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      'temp.val1': [
-        'temp.val1 must greater than 10',
-        "'yo' does not exists in rule definition."
-      ],
-      'temp.val2': ['temp.val2 must greater than 1.5']
+      'temp': {
+        val1: [
+          'val1 must greater than 10',
+          "'yo' does not exists in rule definition."
+        ],
+        'val2': ['val2 must greater than 1.5']
+      },
+
     }));
   });
 });

@@ -56,7 +56,9 @@ describe('acceptedRules', () => {
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      'temp.val1': ["temp.val1 must contains accepted term [1, 'on', 'yes', true]."]
+      'temp': {
+        val1: ["val1 must contains accepted term [1, 'on', 'yes', true]."]
+      }
     }));
   });
 });

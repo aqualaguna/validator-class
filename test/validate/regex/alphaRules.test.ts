@@ -80,7 +80,9 @@ describe('alphaRules', () => {
     let err = t.validate();
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
-      "temp.val2": ['temp.val2 must match alpha |a-z,A-Z|.'],
+      "temp": {
+        val2: ['val2 must match alpha |a-z,A-Z|.']
+      },
     }))
   });
 });
