@@ -62,13 +62,21 @@ let rules = {
 }
 
 let validator = new Validator(data, rules);
-let err = validator.validate();
+// first method
+let err = validator.validate(); //
+return err object
 if (Object.keys(err).length > 0) {
   console.log('data validated');
 } else {
   console.log(err);
 }
-
+// second method
+// this is equal to first method
+if(validator.passess()) {
+  console.log('data validated');
+} else {
+  console.log(t.getAllErrors());
+}
 ```
 
 **for other feature not mentioned in basic usage you can read it in the test folder for other usage.**
