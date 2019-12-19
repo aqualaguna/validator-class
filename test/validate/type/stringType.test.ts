@@ -25,7 +25,7 @@ describe('stringRules', () => {
     let rules = {
       val1: 'string', // false
       val2: 'string', // false
-      val3: 'string', // false
+      val3: 'string', // true
       val4: 'string', // false
       val5: 'string', // false
       val6: 'string', // false
@@ -41,11 +41,10 @@ describe('stringRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(12);
+    expect(Object.keys(err).length).toBe(11);
     expect(err).toEqual(expect.objectContaining({
       val1: ['val1 must type of string.'],
       val2: ['val2 must type of string.'],
-      val3: ['val3 must type of string.'],
       val4: ['val4 must type of string.'],
       val5: ['val5 must type of string.'],
       val6: ['val6 must type of string.'],
@@ -75,7 +74,7 @@ describe('stringRules', () => {
     let rules = {
       temp: {
         val1: 'string|yo', // unexpected rule
-        val2: 'string', // invalid rule
+        val2: 'string', // true
         val3: 'string', // false
         val4: 'string',  // true
       }
@@ -89,7 +88,6 @@ describe('stringRules', () => {
           'val1 must type of string.',
           "'yo' does not exists in rule definition."
         ],
-        'val2': ['val2 must type of string.'],
         'val3': ['val3 must type of string.']
       },
 

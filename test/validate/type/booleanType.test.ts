@@ -22,7 +22,7 @@ describe('booleanRules', () => {
     let rules = {
       val1: 'boolean', // false
       val2: 'boolean', // false
-      val3: 'boolean', // false
+      val3: 'boolean', // true
       val4: 'boolean', // true
       val5: 'boolean', // false
       val6: 'boolean', // true
@@ -35,11 +35,10 @@ describe('booleanRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(4);
+    expect(Object.keys(err).length).toBe(3);
     expect(err).toEqual(expect.objectContaining({
       val1: ['val1 must type of boolean.'],
       val2: ['val2 must type of boolean.'],
-      val3: ['val3 must type of boolean.'],
       val5: ['val5 must type of boolean.']
     }));
     expect(typeof data['val4']).toEqual('boolean');
@@ -66,8 +65,8 @@ describe('booleanRules', () => {
     let rules = {
       temp: {
         val1: 'boolean|yo', // unexpected rule
-        val2: 'boolean', // invalid rule
-        val3: 'boolean', // false
+        val2: 'boolean', // true
+        val3: 'boolean', // true
         val4: 'boolean',  // true
         val5: 'boolean' // true
       }
@@ -81,8 +80,7 @@ describe('booleanRules', () => {
           'val1 must type of boolean.',
           "'yo' does not exists in rule definition."
         ],
-        'val2': ['val2 must type of boolean.'],
-        'val3': ['val3 must type of boolean.']
+        'val3': [{}, {}, {}]
       },
     }));
     expect(typeof data.temp['val4']).toEqual('boolean');

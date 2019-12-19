@@ -31,7 +31,7 @@ describe('ccRules', () => {
       val6: 'credit_card', // false
       val7: 'credit_card', // false
       val8: 'credit_card', // false
-      val9: 'credit_card', // false
+      val9: 'credit_card', // true
       val10: 'credit_card', // false
       val11: 'credit_card', // false
       val12: 'credit_card', // false
@@ -41,13 +41,12 @@ describe('ccRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(11);
+    expect(Object.keys(err).length).toBe(10);
     expect(err).toEqual(expect.objectContaining({
       val1: ['val1 must match credit card format.'],
       val6: ['val6 must match credit card format.'],
       val7: ['val7 must match credit card format.'],
       val8: ['val8 must match credit card format.'],
-      val9: ['val9 must match credit card format.'],
       val10: ['val10 must match credit card format.'],
       val11: ['val11 must match credit card format.'],
       val12: ['val12 must match credit card format.'],

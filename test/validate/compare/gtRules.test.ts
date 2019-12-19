@@ -28,8 +28,8 @@ describe('gtRules', () => {
       val4: 'gt:1', //false string comparison
       val5: 'gt:1', // false undefined object
       val6: 'gt:1', // false object or array cannot be compared
-      val7: 'gt:1', // false object or array cannot be compared
-      val8: 'gt:1', // false object or array cannot be compared
+      val7: 'gt:1', // true
+      val8: 'gt:1', // false
       val9: 'gt:val1', // true compare other attr
       val11: 'gt:0.5', // true
       val12: 'gt:1.5', // false
@@ -38,18 +38,16 @@ describe('gtRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(8);
+    expect(Object.keys(err).length).toBe(7);
     expect(err).toEqual(expect.objectContaining({
       val1: ['val1 must greater than 1'],
       val4: ['val4 must greater than 1'],
       val5: ['val5 must greater than 1'],
       val6: ['val6 must greater than 1'],
-      val7: ['val7 must greater than 1'],
-      val8: ['val8 must greater than 1'],
+      val8: [{ val8: ['val8 must greater than 1'] }, {}, {}],
       val12: ['val12 must greater than 1.5'],
       val14: ['val14 must greater than 2', 'val14 must greater than 2.5']
-    }
-    ))
+    }));
 
   });
 

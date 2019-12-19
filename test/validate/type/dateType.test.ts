@@ -37,11 +37,10 @@ describe('dateRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(8);
+    expect(Object.keys(err).length).toBe(7);
     expect(err).toEqual(expect.objectContaining({
       val1: ['val1 must type of date.'],
       val2: ['val2 must type of date.'],
-      val3: ['val3 must type of date.'],
       val5: ['val5 must type of date.'],
       val8: ['val8 must type of date.'],
       val9: ['val9 must type of date.'],
@@ -68,7 +67,7 @@ describe('dateRules', () => {
     let rules = {
       temp: {
         val1: 'date|yo', // unexpected rule
-        val2: 'date', // invalid rule
+        val2: 'date', // true
         val3: 'date', // true
         val4: 'date',  // true
       }
@@ -82,9 +81,7 @@ describe('dateRules', () => {
           'val1 must type of date.',
           "'yo' does not exists in rule definition."
         ],
-        'val2': ['val2 must type of date.']
       },
-
     }));
     expect(data.temp['val3']).toBeInstanceOf(Date);
     expect(data.temp['val4']).toBeInstanceOf(Date);

@@ -24,17 +24,16 @@ describe('acceptedRules', () => {
       val5: "accepted", // true
       val6: "accepted", // false
       val7: "accepted", // false
-      val8: "accepted", // false
+      val8: "accepted", // true
       val9: "accepted" // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(5);
+    expect(Object.keys(err).length).toBe(4);
     expect(err).toEqual(expect.objectContaining({
       val3: ["val3 must contains accepted term [1, 'on', 'yes', true]."],
       val6: ["val6 must contains accepted term [1, 'on', 'yes', true]."],
       val7: ["val7 must contains accepted term [1, 'on', 'yes', true]."],
-      val8: ["val8 must contains accepted term [1, 'on', 'yes', true]."],
       val9: ["val9 must contains accepted term [1, 'on', 'yes', true]."]
     }));
   });

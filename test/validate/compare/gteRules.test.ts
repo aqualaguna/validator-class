@@ -28,8 +28,8 @@ describe('gteRules', () => {
       val4: 'gte:1', //false
       val5: 'gte:1', // false
       val6: 'gte:1', // false object or array cannot be compared
-      val7: 'gte:1', // false object or array cannot be compared
-      val8: 'gte:1', // false object or array cannot be compared
+      val7: 'gte:1', // true
+      val8: 'gte:1', // true
       val9: 'gte:val1', // true compare other attr
       val11: 'gte:0.5', // true
       val12: 'gte:1.5', // false
@@ -38,13 +38,17 @@ describe('gteRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(7);
+
+    expect(Object.keys(err).length).toBe(6);
     expect(err).toEqual(expect.objectContaining({
       val4: ['val4 must greater than or equal 1'],
       val5: ['val5 must greater than or equal 1'],
+      "val8": [
+        {},
+        {},
+        {}
+      ],
       val6: ['val6 must greater than or equal 1'],
-      val7: ['val7 must greater than or equal 1'],
-      val8: ['val8 must greater than or equal 1'],
       val12: ['val12 must greater than or equal 1.5'],
       val14: [
         'val14 must greater than or equal 2',

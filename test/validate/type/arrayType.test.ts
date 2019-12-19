@@ -50,9 +50,9 @@ describe('arrayRules', () => {
     let rules = {
       temp: {
         val1: 'array|yo', // unexpected rule
-        val2: 'array', // invalid rule
-        val3: 'array', // invalid rule
-        val4: 'array' // invalid rule
+        val2: 'array', // true
+        val3: 'array', // true
+        val4: 'array' // false
       }
     };
     let t = new Validator(data, rules);

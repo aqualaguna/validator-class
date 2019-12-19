@@ -28,8 +28,8 @@ describe('lteRules', () => {
       val4: 'lte:1', //false
       val5: 'lte:1', // false
       val6: 'lte:1', // false object or array cannot be compared
-      val7: 'lte:1', // false object or array cannot be compared
-      val8: 'lte:1', // false object or array cannot be compared
+      val7: 'lte:1', // true
+      val8: 'lte:1', // false 
       val9: 'lte:val1', // true compare other attr
       val11: 'lte:1', // true
       val12: 'lte:0.5', // false
@@ -38,20 +38,38 @@ describe('lteRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(7);
+    expect(Object.keys(err).length).toBe(6);
     expect(err).toEqual(expect.objectContaining({
-      val4: ['val4 must less than or equal 1'],
-      val5: ['val5 must less than or equal 1'],
-      val6: ['val6 must less than or equal 1'],
-      val7: ['val7 must less than or equal 1'],
-      val8: ['val8 must less than or equal 1'],
-      val12: ['val12 must less than or equal 0.5'],
-      val13: [
-        'val13 must less than or equal 0',
-        'val13 must less than or equal 0.5'
+      "val4": [
+        "val4 must less than or equal 1"
+      ],
+      "val5": [
+        "val5 must less than or equal 1"
+      ],
+      "val6": [
+        "val6 must less than or equal 1"
+      ],
+      "val8": [
+        {},
+        {
+          "val8": [
+            "val8 must less than or equal 1"
+          ]
+        },
+        {
+          "val8": [
+            "val8 must less than or equal 1"
+          ]
+        }
+      ],
+      "val12": [
+        "val12 must less than or equal 0.5"
+      ],
+      "val13": [
+        "val13 must less than or equal 0",
+        "val13 must less than or equal 0.5"
       ]
-    }
-    ))
+    }));
 
   });
 

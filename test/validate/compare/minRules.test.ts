@@ -28,8 +28,8 @@ describe('minRules', () => {
       val4: 'min:1', // true
       val5: 'min:1', // false
       val6: 'min:1', // false object or array cannot be compared
-      val7: 'min:1', // false object or array cannot be compared
-      val8: 'min:1', // false object or array cannot be compared
+      val7: 'min:1', // true
+      val8: 'min:1', // true 
       val9: 'min:val1', // true compare other attr
       val11: 'min:0.5', // true
       val12: 'min:1.5', // false
@@ -38,16 +38,14 @@ describe('minRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(6);
+    expect(Object.keys(err).length).toBe(5);
     expect(err).toEqual(expect.objectContaining({
       val5: ['val5 minimum value is 1'],
       val6: ['val6 minimum value is 1'],
-      val7: ['val7 minimum value is 1'],
-      val8: ['val8 minimum value is 1'],
+      val8: [{}, {}, {}],
       val12: ['val12 minimum value is 1.5'],
       val14: ['val14 minimum value is 2', 'val14 minimum value is 2.5']
-    }
-    ));
+    }));
   });
 
   it('nested min', async () => {

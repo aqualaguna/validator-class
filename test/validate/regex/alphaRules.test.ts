@@ -38,12 +38,12 @@ describe('alphaRules', () => {
       val12: 'alpha', // false
       val13: 'alpha', // false
       val14: 'alpha', // false
-      val15: 'alpha', // false
+      val15: 'alpha', // true
       val16: 'alpha', // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(15);
+    expect(Object.keys(err).length).toBe(14);
     expect(err).toEqual(expect.objectContaining({
       val2: ['val2 must match alpha |a-z,A-Z|.'],
       val3: ['val3 must match alpha |a-z,A-Z|.'],
@@ -58,8 +58,11 @@ describe('alphaRules', () => {
       val12: ['val12 must match alpha |a-z,A-Z|.'],
       val13: ['val13 must match alpha |a-z,A-Z|.'],
       val14: ['val14 must match alpha |a-z,A-Z|.'],
-      val15: ['val15 must match alpha |a-z,A-Z|.'],
-      val16: ['val16 must match alpha |a-z,A-Z|.'],
+      val16: [
+        { val16: ['val16 must match alpha |a-z,A-Z|.'] },
+        { val16: ['val16 must match alpha |a-z,A-Z|.'] },
+        { val16: ['val16 must match alpha |a-z,A-Z|.'] },
+      ],
     }))
   });
 

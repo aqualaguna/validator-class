@@ -20,7 +20,7 @@ describe('inRules', () => {
       val12: 10,
     };
     let rules = {
-      val1: 'in:1', // false
+      val1: 'in:1', // true
       val2: 'in:1', // false
       val3: 'in:1', // false
       val4: 'in:10,11', // true
@@ -35,9 +35,8 @@ describe('inRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(6);
+    expect(Object.keys(err).length).toBe(5);
     expect(err).toEqual(expect.objectContaining({
-      val1: ['val1 must one of [1]'],
       val2: ['val2 must one of [1]'],
       val3: ['val3 must one of [1]'],
       val7: ['val7 must one of [1, 3]'],
@@ -56,7 +55,7 @@ describe('inRules', () => {
     };
     let rules = {
       temp: {
-        val1: 'in:1', // unexpected rule
+        val1: 'in:1', // true
         val2: 'in:1', // invalid rule
         val3: 'in:male,female', // true
 
@@ -67,7 +66,6 @@ describe('inRules', () => {
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
       'temp': {
-        val1: ['val1 must one of [1]'],
         'val2': ['val2 must one of [1]']
       },
 

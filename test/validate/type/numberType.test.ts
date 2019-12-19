@@ -25,7 +25,7 @@ describe('numberRules', () => {
     let rules = {
       val1: 'number', // false
       val2: 'number', // false
-      val3: 'number', // false
+      val3: 'number', // true
       val4: 'number', // true
       val5: 'number', // false
       val6: 'number', // true
@@ -41,11 +41,10 @@ describe('numberRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(7);
+    expect(Object.keys(err).length).toBe(6);
     expect(err).toEqual(expect.objectContaining({
       val1: ['val1 must type of number.'],
       val2: ['val2 must type of number.'],
-      val3: ['val3 must type of number.'],
       val5: ['val5 must type of number.'],
       val9: ['val9 must type of number.'],
       val10: ['val10 must type of number.'],
@@ -75,7 +74,7 @@ describe('numberRules', () => {
     let rules = {
       temp: {
         val1: 'number|yo', // unexpected rule
-        val2: 'number', // invalid rule
+        val2: 'number', // true
         val3: 'number', // true
         val4: 'number',  // true
       }
@@ -89,7 +88,6 @@ describe('numberRules', () => {
           'val1 must type of number.',
           "'yo' does not exists in rule definition."
         ],
-        val2: ['val2 must type of number.']
       }
     }));
     expect(typeof data.temp['val3']).toEqual('number');

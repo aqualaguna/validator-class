@@ -30,7 +30,7 @@ describe('hashtagRules', () => {
       val5: 'hashtag', // false
       val6: 'hashtag', // false
       val7: 'hashtag', // false
-      val8: 'hashtag', // false
+      val8: 'hashtag', // true
       val9: 'hashtag', // false
       val10: 'hashtag', // true
       val11: 'hashtag', // false
@@ -41,21 +41,37 @@ describe('hashtagRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(13);
+    expect(Object.keys(err).length).toBe(12);
     expect(err).toEqual(expect.objectContaining({
       val2: ['val2 must match hashtag format. eg. #hello'],
       val4: ['val4 must match hashtag format. eg. #hello'],
       val5: ['val5 must match hashtag format. eg. #hello'],
       val6: ['val6 must match hashtag format. eg. #hello'],
       val7: ['val7 must match hashtag format. eg. #hello'],
-      val8: ['val8 must match hashtag format. eg. #hello'],
       val9: ['val9 must match hashtag format. eg. #hello'],
       val10: ['val10 must match hashtag format. eg. #hello'],
       val11: ['val11 must match hashtag format. eg. #hello'],
       val12: ['val12 must match hashtag format. eg. #hello'],
       val13: ['val13 must match hashtag format. eg. #hello'],
       val14: ['val14 must match hashtag format. eg. #hello'],
-      val15: ['val15 must match hashtag format. eg. #hello']
+      "val15": [
+        {
+          "val15": [
+            "val15 must match hashtag format. eg. #hello"
+          ]
+        },
+        {
+          "val15": [
+            "val15 must match hashtag format. eg. #hello"
+          ]
+        },
+        {
+          "val15": [
+            "val15 must match hashtag format. eg. #hello"
+          ]
+        }
+      ]
+
     }));
   });
 

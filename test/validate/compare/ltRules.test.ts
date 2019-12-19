@@ -28,8 +28,8 @@ describe('ltRules', () => {
       val4: 'lt:1', //false
       val5: 'lt:1', // false
       val6: 'lt:1', // false object or array cannot be compared
-      val7: 'lt:1', // false object or array cannot be compared
-      val8: 'lt:1', // false object or array cannot be compared
+      val7: 'lt:1', // true
+      val8: 'lt:1', // false
       val9: 'lt:val1', // true compare other attr
       val11: 'lt:1', // false
       val12: 'lt:0.5', // false
@@ -38,14 +38,30 @@ describe('ltRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(9);
+    expect(Object.keys(err).length).toBe(8);
     expect(err).toEqual(expect.objectContaining({
       val2: ['val2 must less than 1.2'],
       val4: ['val4 must less than 1'],
       val5: ['val5 must less than 1'],
       val6: ['val6 must less than 1'],
-      val7: ['val7 must less than 1'],
-      val8: ['val8 must less than 1'],
+      "val8": [
+        {
+          "val8": [
+            "val8 must less than 1"
+          ]
+        },
+        {
+          "val8": [
+            "val8 must less than 1"
+          ]
+        },
+        {
+          "val8": [
+            "val8 must less than 1"
+          ]
+        }
+      ],
+
       val11: ['val11 must less than 1'],
       val12: ['val12 must less than 0.5'],
       val13: [

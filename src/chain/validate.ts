@@ -44,23 +44,20 @@ export default class Validate extends Rule {
                   path: [key],
                   root: real_root
                 };
-
-                let status = this.rulesFunction[r[0]](data, params);
-                if (!status) {
-                  let msg: string;
-                  if (this.options && typeof this.options.custom_message[r[0]] == 'function') {
-                    try {
-                      msg = this.options.custom_message[r[0]](key, params);
-                    } catch (e) {
-                      console.log(e);
-                      msg = this.rulesFunction[r[0]].getErrorMessage(key, params);
+                if (Array.isArray(data) && r[0] != 'array') {
+                  if (data.length > 0) {
+                    let temperr = [];
+                    for (const d of data) {
+                      let terr: any = {};
+                      this.checkField(key, r[0], d, params, terr);
+                      temperr.push(terr);
                     }
-                  } else {
-                    msg = this.rulesFunction[r[0]].getErrorMessage(key, params);
+                    setByPath(err, [key], temperr);
                   }
-
-                  mergeByPath(err, [key], [msg]);
+                } else {
+                  this.checkField(key, r[0], data, params, err);
                 }
+
               }
             })
           }
@@ -74,7 +71,23 @@ export default class Validate extends Rule {
     }
     return err;
   }
-
+  protected checkField (field_name: string, rule_name: string, data: any, params: any, err: any) {
+    let status = this.rulesFunction[rule_name](data, params);
+    if (!status) {
+      let msg: string;
+      if (this.options && typeof this.options.custom_message[rule_name] == 'function') {
+        try {
+          msg = this.options.custom_message[rule_name](field_name, params);
+        } catch (e) {
+          console.log(e);
+          msg = this.rulesFunction[rule_name].getErrorMessage(field_name, params);
+        }
+      } else {
+        msg = this.rulesFunction[rule_name].getErrorMessage(field_name, params);
+      }
+      mergeByPath(err, [field_name], [msg]);
+    }
+  }
   passes () {
     let err = this.errorsBag ? this.errorsBag : this.validateRecursive();
     this.errorsBag = err;

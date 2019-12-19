@@ -52,12 +52,12 @@ describe('ipRules', () => {
       val19: 'ip', // false
       val20: 'ip', // false
       val21: 'ip', // false
-      val22: 'ip', // false
+      val22: 'ip', // true
       val23: 'ip', // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(15);
+    expect(Object.keys(err).length).toBe(14);
     expect(err).toEqual(expect.objectContaining({
       val7: ['val7 must match ip format.'],
       val8: ['val8 must match ip format.'],
@@ -72,8 +72,23 @@ describe('ipRules', () => {
       val19: ['val19 must match ip format.'],
       val20: ['val20 must match ip format.'],
       val21: ['val21 must match ip format.'],
-      val22: ['val22 must match ip format.'],
-      val23: ['val23 must match ip format.']
+      "val23": [
+        {
+          "val23": [
+            "val23 must match ip format."
+          ]
+        },
+        {
+          "val23": [
+            "val23 must match ip format."
+          ]
+        },
+        {
+          "val23": [
+            "val23 must match ip format."
+          ]
+        }
+      ]
     }));
   });
 

@@ -24,12 +24,12 @@ describe('emailRules', () => {
       val5: 'email', // false
       val6: 'email', // false
       val7: 'email', // false
-      val8: 'email', // false
+      val8: 'email', // true
       val9: 'email' // false
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(8);
+    expect(Object.keys(err).length).toBe(7);
     expect(err).toEqual(expect.objectContaining({
       val2: ['val2 must match email format.'],
       val3: ['val3 must match email format.'],
@@ -37,7 +37,6 @@ describe('emailRules', () => {
       val5: ['val5 must match email format.'],
       val6: ['val6 must match email format.'],
       val7: ['val7 must match email format.'],
-      val8: ['val8 must match email format.'],
       val9: ['val9 must match email format.']
     }));
   });

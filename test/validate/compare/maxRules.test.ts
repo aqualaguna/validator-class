@@ -28,8 +28,8 @@ describe('maxRules', () => {
       val4: 'max:1', //false
       val5: 'max:1', // false
       val6: 'max:1', // false object or array cannot be compared
-      val7: 'max:1', // false object or array cannot be compared
-      val8: 'max:1', // false object or array cannot be compared
+      val7: 'max:1', // true 
+      val8: 'max:1', // false
       val9: 'max:val1', // true compare other attr
       val11: 'max:1', // true
       val12: 'max:0.5', // false
@@ -38,13 +38,12 @@ describe('maxRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(7);
+    expect(Object.keys(err).length).toBe(6);
     expect(err).toEqual(expect.objectContaining({
       val4: ['val4 maximum value is 1'],
       val5: ['val5 maximum value is 1'],
       val6: ['val6 maximum value is 1'],
-      val7: ['val7 maximum value is 1'],
-      val8: ['val8 maximum value is 1'],
+      val8: [{}, { val8: ['val8 maximum value is 1'] }, { val8: ['val8 maximum value is 1'] }],
       val12: ['val12 maximum value is 0.5'],
       val13: ['val13 maximum value is 0', 'val13 maximum value is 0.5']
     }));

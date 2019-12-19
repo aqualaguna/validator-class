@@ -25,7 +25,7 @@ describe('integerRules', () => {
     let rules = {
       val1: 'integer', // false
       val2: 'integer', // false
-      val3: 'integer', // false
+      val3: 'integer', // true
       val4: 'integer', // true
       val5: 'integer', // false
       val6: 'integer', // true
@@ -41,18 +41,35 @@ describe('integerRules', () => {
     };
     let t = new Validator(data, rules);
     let err = t.validate();
-    expect(Object.keys(err).length).toBe(10);
+    expect(Object.keys(err).length).toBe(9);
     expect(err).toEqual(expect.objectContaining({
-      val1: ['val1 must type of integer.'],
-      val2: ['val2 must type of integer.'],
-      val3: ['val3 must type of integer.'],
-      val5: ['val5 must type of integer.'],
-      val9: ['val9 must type of integer.'],
-      val10: ['val10 must type of integer.'],
-      val11: ['val11 must type of integer.'],
-      val12: ['val12 must type of integer.'],
-      val13: ['val13 must type of integer.'],
-      val14: ['val14 must type of integer.']
+      "val1": [
+        "val1 must type of integer."
+      ],
+      "val2": [
+        "val2 must type of integer."
+      ],
+      "val5": [
+        "val5 must type of integer."
+      ],
+      "val9": [
+        "val9 must type of integer."
+      ],
+      "val10": [
+        "val10 must type of integer."
+      ],
+      "val11": [
+        "val11 must type of integer."
+      ],
+      "val12": [
+        "val12 must type of integer."
+      ],
+      "val13": [
+        "val13 must type of integer."
+      ],
+      "val14": [
+        "val14 must type of integer."
+      ]
     }));
     expect(typeof data['val4']).toEqual('number');
     expect(typeof data['val6']).toEqual('number');
@@ -74,14 +91,15 @@ describe('integerRules', () => {
 
     let rules = {
       temp: {
-        val1: 'integer|yo', // unexpected rule
-        val2: 'integer', // invalid rule
+        val1: 'integer|yo', // false
+        val2: 'integer', // true
         val3: 'integer', // true
         val4: 'integer',  // true
       }
     };
     let t = new Validator(data, rules);
     let err = t.validate();
+
     expect(Object.keys(err).length).toBe(1);
     expect(err).toEqual(expect.objectContaining({
       'temp': {
@@ -89,8 +107,6 @@ describe('integerRules', () => {
           'val1 must type of integer.',
           "'yo' does not exists in rule definition."
         ],
-        'val2': ['val2 must type of integer.']
-
       },
     }));
     expect(typeof data.temp['val3']).toEqual('number');

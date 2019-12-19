@@ -22,7 +22,6 @@ describe('Validate Custom Message Test', () => {
     });
     expect(t.passes()).toBeFalsy();
     let err = t.getAllErrors();
-    console.log(err);
     expect(Object.keys(err).length).toBe(3);
     expect(err).toEqual({
       "name": ["name is required."],
