@@ -1,5 +1,4 @@
 var Benchmark = require('benchmark');
-var microtime = require('microtime');
 var suite = new Benchmark.Suite;
 var Validator = require('../lib/index').default;
 let ValidatorJS = require('validatorjs');
@@ -42,7 +41,7 @@ let rules2 = {
 };
 
 // add tests
-suite.add('validator#test', function () {
+suite.add('validator-class#test', function () {
 
   let t = new Validator(data, rules);
   t.passes();

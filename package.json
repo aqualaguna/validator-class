@@ -1,6 +1,6 @@
 {
   "name": "validator-class",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "validator for json structure",
   "main": "lib/index",
   "types": "lib/index",
@@ -9,6 +9,7 @@
     "clean": "rm -Rf lib",
     "build": "npm run clean && tsc -p .",
     "build:publish": "npm run build && npm publish",
+    "bench": "node benchmark/bench.js",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "test:docker": "docker-compose up -d && jest --runInBand",
     "test": "jest --runInBand",

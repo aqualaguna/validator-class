@@ -3,7 +3,6 @@ import traverse from "./helper/traverse";
 import getByPath from "./helper/getByPath";
 import setByPath from "./helper/setByPath";
 import mergeByPath from "./helper/mergeByPath";
-import traverseSurface from "./helper/traverseSurface";
 
 export default class Validate extends Rule {
   protected errorsBag: any;
@@ -48,7 +47,18 @@ export default class Validate extends Rule {
 
                 let status = this.rulesFunction[r[0]](data, params);
                 if (!status) {
-                  let msg = this.rulesFunction[r[0]].getErrorMessage(key, params);
+                  let msg: string;
+                  if (this.options && typeof this.options.custom_message[r[0]] == 'function') {
+                    try {
+                      msg = this.options.custom_message[r[0]](key, params);
+                    } catch (e) {
+                      console.log(e);
+                      msg = this.rulesFunction[r[0]].getErrorMessage(key, params);
+                    }
+                  } else {
+                    msg = this.rulesFunction[r[0]].getErrorMessage(key, params);
+                  }
+
                   mergeByPath(err, [key], [msg]);
                 }
               }
