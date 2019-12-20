@@ -1,4 +1,4 @@
-import Base from "./base";
+import Base, { OptionsValidator } from "./base";
 import lteRule from "./ruleFunction/comparisonRule/lteRule";
 import gtRule from "./ruleFunction/comparisonRule/gtRule";
 import gteRule from "./ruleFunction/comparisonRule/gteRule";
@@ -25,6 +25,23 @@ import traverse from "./helper/traverse";
 import ipRule from "./ruleFunction/regexRule/ipRule";
 import requiredRule from "./ruleFunction/comparisonRule/requiredRule";
 import ltRule from "./ruleFunction/comparisonRule/ltRule";
+import telephoneRule from "./ruleFunction/regexRule/telephoneRule";
+import regexRule from "./ruleFunction/regexRule/regexRule";
+import notRegexRule from "./ruleFunction/regexRule/notRegexRule";
+import presentRule from "./ruleFunction/comparisonRule/presentRule";
+import afterRule from "./ruleFunction/comparisonRule/afterRule";
+import afterEqualRule from "./ruleFunction/comparisonRule/afterEqualRule";
+import beforeRule from "./ruleFunction/comparisonRule/beforeRule";
+import beforeEqualRule from "./ruleFunction/comparisonRule/berforeEqualRule";
+import sameRule from "./ruleFunction/comparisonRule/sameRule";
+import differentRule from "./ruleFunction/comparisonRule/differentRule";
+import confirmedRule from "./ruleFunction/comparisonRule/confirmedRule";
+import requiredUnlessRule from "./ruleFunction/comparisonRule/requiredUnlessRule";
+import requiredWithoutAllRule from "./ruleFunction/comparisonRule/requiredWithoutAllRules";
+import requiredWithoutRule from "./ruleFunction/comparisonRule/requiredWithoutRules";
+import requiredWithAllRule from "./ruleFunction/comparisonRule/requiredWithAllRule";
+import requiredWithRule from "./ruleFunction/comparisonRule/requiredWithRules";
+import requiredIfRule from "./ruleFunction/comparisonRule/requiredIfRule";
 
 export default class Rule extends Base {
   protected rulesFunction: any = {
@@ -36,6 +53,12 @@ export default class Rule extends Base {
     max: maxRule,
     size: sizeRule,
     required: requiredRule,
+    required_if: requiredIfRule,
+    required_unless: requiredUnlessRule,
+    required_with: requiredWithRule,
+    required_with_all: requiredWithAllRule,
+    required_without: requiredWithoutRule,
+    required_without_all: requiredWithoutAllRule,
     accepted: acceptedRule,
     email: emailRule,
     in: inRule,
@@ -52,7 +75,18 @@ export default class Rule extends Base {
     date: dateRule,
     integer: integerRule,
     number: numberRule,
-    string: stringRule
+    string: stringRule,
+    telephone: telephoneRule,
+    regex: regexRule,
+    not_regex: notRegexRule,
+    present: presentRule,
+    after: afterRule,
+    after_or_equal: afterEqualRule,
+    before: beforeRule,
+    before_or_equal: beforeEqualRule,
+    same: sameRule,
+    different: differentRule,
+    confirmed: confirmedRule,
   };
   validateRules () {
     let err: any = {};
@@ -78,5 +112,15 @@ export default class Rule extends Base {
       }
     })
     return err;
+  }
+
+  constructor(data: any, rules: any, options?: OptionsValidator) {
+    super(data, rules, options);
+    if (options && options.custom_rule) {
+      this.rulesFunction = {
+        ...this.rulesFunction,
+        ...options.custom_rule
+      }
+    }
   }
 }

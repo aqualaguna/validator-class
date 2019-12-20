@@ -1,5 +1,6 @@
 interface OptionsValidator {
-  custom_message: any;
+  custom_message?: any;
+  custom_rule?: any;
 }
 
 export default class Base {
@@ -13,4 +14,8 @@ export default class Base {
       this.options = options;
     }
   }
+}
+
+export {
+  OptionsValidator
 }

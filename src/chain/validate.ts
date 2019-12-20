@@ -29,7 +29,16 @@ export default class Validate extends Rule {
           if (typeof rule[0] != 'string') {
             setByPath(err, [key], ['if its an Array it must be array of string']);
           } else {
-            rule = rule.map((r: any) => r.split(':'))
+            rule = rule.map((r: any) => {
+              let res = r.split(':');
+              if (res.length > 2) {
+                let temp = [];
+                temp.push(res.shift());
+                temp.push(res.join(':'));
+                res = temp;
+              }
+              return res;
+            })
             rule.forEach((r: any) => {
               if (!this.rulesFunction[r[0]]) {
                 mergeByPath(err, [key], [`'${r[0]}' does not exists in rule definition.`]);

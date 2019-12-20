@@ -159,8 +159,14 @@ alpha_num accept string which only contains [ a-z, A-Z, 0-9 ]
 
 #### alpha
 alpha_num accept string which only contains [ a-z, A-Z ]
-#### credit_card
-credit_card accept string which match credit card visa, master, etc.
+
+#### telephone
+telephone accept string which match phone format.
+for test case look at telephoneRules.test.ts
+
+``let regex = /^((\+\d{2,4})|\(?\d{3,4}\)?)?([ -]?\d{3,4})+([ -]?\d+)?$/;``
+
+
 
 #### credit_card
 credit_card accept string which match credit card visa, master, etc.
