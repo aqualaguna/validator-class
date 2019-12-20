@@ -113,6 +113,32 @@ check if the field is a string. anything that has typeof string.
 check if the field is a number. any number and any string that can be converted to number.
 
 ### compare
+#### after
+The field under validation must be after the given date.
+date comparison is using locutus.io strtotime method.
+
+#### after_or_equal
+The field under validation must be after or equal the given date.
+date comparison is using locutus.io strtotime method.
+
+#### before
+The field under validation must be before the given date.
+date comparison is using locutus.io strtotime method.
+
+#### before_or_equal
+The field under validation must be before or equal the given date.
+date comparison is using locutus.io strtotime method.
+
+#### confirmed 
+The field under validation must have a matching field of foo_confirmation. For example, if the field under validation is password, a matching password_confirmation field must be present in the input.
+
+#### different
+The given field must be different than the field under validation.
+
+#### present
+The field under validation must be present in the input data but can be empty.
+
+
 #### gte
 greater than equal. this rule need 1 params which is can be any of:
 - other field that can be compared.
@@ -141,6 +167,33 @@ max rule can be applied either to string or number. only accept 1 parameter whic
 #### required
 required validate wheter the field is not undefined or null. empty string is a invalid.
 
+#### required_if
+The field under validation must be present and not empty if the anotherfield field is equal to any value.
+
+#### required_unless
+The field under validation must be present and not empty unless the anotherfield field is equal to any value.
+
+#### required_with
+The field under validation must be present and not empty only if any of the other specified fields are present.
+
+
+#### required_with_all
+The field under validation must be present and not empty only if all of the other specified fields are present.
+
+
+#### required_without
+The field under validation must be present and not empty only when any of the other specified fields are not present.
+
+#### required_without_all
+The field under validation must be present and not empty only when all of the other specified fields are not present.
+
+#### same
+The given field must match the field under validation.
+
+
+
+
+
 #### size
 size rule only accept field with type string and the length is match to size parameter.
 this rule accept 1 param which is a number.
@@ -151,8 +204,17 @@ this rule accept 1 param which is a number.
 #### accepted
 accepted rule only accept value in [true, 1, 'on', 'yes'];
 
+#### regex
+The field under validation must match the given regular expression.
+
+Note: When using the regex pattern, it may be necessary to specify rules in an array instead of using pipe delimiters, especially if the regular expression contains a pipe character. For each backward slash that you used in your regex pattern, you must escape each one with another backward slash.
+
+#### not_regex
+inverse of regex rule.
+
 #### alpha_dash
 alpha_dash accept string which only contains [ a-z, A-Z, 0-9, -, _ ]
+
 
 #### alpha_num
 alpha_num accept string which only contains [ a-z, A-Z, 0-9 ]
