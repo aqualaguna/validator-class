@@ -6,6 +6,10 @@ import mergeByPath from "./helper/mergeByPath";
 
 export default class Validate extends Rule {
   protected errorsBag: any;
+  /**
+   * validate data and rules provided.
+   * returning errorsbag;
+   */
   validate () {
     return this.validateRecursive();
   }
@@ -53,7 +57,7 @@ export default class Validate extends Rule {
                   path: [key],
                   root: real_root
                 };
-                if (Array.isArray(data) && r[0] != 'array') {
+                if (Array.isArray(data) && !(['array', 'not_array'].includes(r[0]))) {
                   if (data.length > 0) {
                     let temperr = [];
                     for (const d of data) {
@@ -78,8 +82,10 @@ export default class Validate extends Rule {
         setByPath(err, [key], temperr);
       }
     }
+    this.errorsBag = err;
     return err;
   }
+
   protected checkField (field_name: string, rule_name: string, data: any, params: any, err: any) {
     let status = this.rulesFunction[rule_name](data, params);
     if (!status) {
@@ -97,7 +103,11 @@ export default class Validate extends Rule {
       mergeByPath(err, [field_name], [msg]);
     }
   }
-  passes () {
+
+  /**
+   * return boolean whether validation passes.
+   */
+  passes (): boolean {
     let err = this.errorsBag ? this.errorsBag : this.validateRecursive();
     this.errorsBag = err;
     let flag = true;
@@ -108,11 +118,24 @@ export default class Validate extends Rule {
     return flag;
   }
 
-  fail () {
+  /**
+  * return boolean whether validation fail.
+  */
+  fail (): boolean {
     return !this.passes();
   }
 
-  getAllErrors () {
+  /**
+   * get errorsBag
+   */
+  getAllErrors (): any {
     return this.errorsBag;
+  }
+  /**
+   * set errorsbag
+   * @param errors errors
+   */
+  setErrors (errors: any): void {
+    this.errorsBag = errors;
   }
 } 

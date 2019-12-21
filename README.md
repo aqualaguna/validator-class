@@ -84,7 +84,10 @@ if(validator.passess()) {
 ## Rule List
 ### type
 #### array
-check if certain field is type array. @deprecated because of array input feature. this validation no need to be checked.
+check if certain field is type array.
+
+#### not_array
+check if certain field is type not an array.
 #### boolean
 check if the field is a boolean.
 
