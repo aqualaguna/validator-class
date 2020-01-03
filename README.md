@@ -83,6 +83,13 @@ if(validator.passess()) {
 
 ## Rule List
 ### type
+#### nullable
+if field nullable and the value is null or undefined then return true and ignore all other rule.
+eg 'string|nullable' and the value is null => true
+eg 'string|nullable' and the value is null => true
+
+for other test case look nullableRule.test.ts in test directory.
+
 #### array
 check if certain field is type array.
 

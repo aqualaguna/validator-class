@@ -43,12 +43,17 @@ export default class Validate extends Rule {
               }
               return res;
             })
-            rule.forEach((r: any) => {
+            let nullableFlag = rule.some((t: any) => t[0] == 'nullable');
+            for (const r of rule) {
               if (!this.rulesFunction[r[0]]) {
                 mergeByPath(err, [key], [`'${r[0]}' does not exists in rule definition.`]);
               } else {
                 // there is a definition
                 let data = getByPath(real_root, [key]);
+                if (nullableFlag && (data == undefined || data == null)) {
+                  // return true for all of its set of other rule
+                  break;
+                }
                 // data get ;)
                 // lets validate
                 let params = {
@@ -72,7 +77,7 @@ export default class Validate extends Rule {
                 }
 
               }
-            })
+            }
           }
         }
       } else if (typeof value == 'object') {

@@ -43,6 +43,7 @@ import requiredWithAllRule from "./ruleFunction/comparisonRule/requiredWithAllRu
 import requiredWithRule from "./ruleFunction/comparisonRule/requiredWithRules";
 import requiredIfRule from "./ruleFunction/comparisonRule/requiredIfRule";
 import notArrayRule from "./ruleFunction/typeRule/notArrayRule";
+import nullableRule from "./ruleFunction/typeRule/nullableRule";
 
 export default class Rule extends Base {
   protected rulesFunction: any = {
@@ -73,6 +74,7 @@ export default class Rule extends Base {
     ip: ipRule,
     array: arrayRule,
     not_array: notArrayRule,
+    nullable: nullableRule,
     boolean: booleanRule,
     date: dateRule,
     integer: integerRule,
